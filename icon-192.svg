@@ -1,13 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f2cd7a"/>
-      <stop offset="100%" stop-color="#b78931"/>
-    </linearGradient>
-  </defs>
-  <rect width="192" height="192" rx="34" fill="#7a2747"/>
-  <circle cx="96" cy="96" r="72" fill="url(#g)" opacity="0.18"/>
-  <circle cx="96" cy="96" r="56" fill="#fffdf8" opacity="0.94"/>
-  <text x="96" y="82" text-anchor="middle" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#7a2747">POI</text>
-  <text x="96" y="108" text-anchor="middle" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#7a2747">BINGO</text>
+  <rect width="192" height="192" rx="34.56" fill="#7a2747"/>
+  <circle cx="96.0" cy="96.0" r="72.96000000000001" fill="#f2cd7a" opacity="0.20"/>
+  <circle cx="96.0" cy="96.0" r="57.599999999999994" fill="#fffdf8" opacity="0.93"/>
+  <text x="50%" y="44%" text-anchor="middle" font-size="26.880000000000003" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#7a2747">POI</text>
+  <text x="50%" y="60%" text-anchor="middle" font-size="19.200000000000003" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#7a2747">BINGO</text>
 </svg>
