@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Poiroux Bingo" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./icon-192.svg" />
+  <title>Annual Poiroux Reunion Bingo</title>
+  <style>
+    :root{--bg:#0d0710;--panel:#1b0c18;--panel2:#2a1224;--text:#fff7ef;--muted:#d6c1b6;--gold:#f2cd7a;--gold2:#b78931;--plum:#7a2747;--shadow:0 24px 70px rgba(0,0,0,.35)}
+    *{box-sizing:border-box} html,body{margin:0;height:100%;background:radial-gradient(circle at 15% 10%, rgba(242,205,122,.12), transparent 20%), radial-gradient(circle at 80% 10%, rgba(122,39,71,.25), transparent 22%), linear-gradient(180deg,#090409 0%, #140914 54%, #090406 100%); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    .wrap{max-width:1200px;margin:0 auto;padding:16px 14px 22px}
+    .hero{background:linear-gradient(135deg, rgba(122,39,71,.98), rgba(48,20,34,.98));border:1px solid rgba(242,205,122,.16);box-shadow:var(--shadow);border-radius:26px;padding:18px;position:relative;overflow:hidden}
+    .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 18%, rgba(255,255,255,.13), transparent 18%),radial-gradient(circle at 82% 10%, rgba(255,255,255,.08), transparent 16%),radial-gradient(circle at 50% 112%, rgba(242,205,122,.08), transparent 20%);pointer-events:none}
+    .brand{position:relative;display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(242,205,122,.18);background:rgba(255,255,255,.06);border-radius:999px;padding:8px 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase}.orb{width:9px;height:9px;border-radius:999px;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+    h1{position:relative;margin:12px 0 6px;font-size:clamp(28px,5vw,50px);line-height:1.03}.sub{position:relative;margin:0;color:var(--muted);max-width:860px;line-height:1.45;font-size:15px}
+    .controls{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:16px;align-items:end}.control{background:rgba(17,10,15,.72);border:1px solid rgba(242,205,122,.14);border-radius:18px;padding:12px;box-shadow:var(--shadow)}
+    label{display:block;margin-bottom:8px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.24em} select,input,button{width:100%;font:inherit} select,input{appearance:none;border-radius:14px;border:1px solid rgba(242,205,122,.2);background:rgba(10,5,9,.96);color:var(--text);padding:13px 14px;outline:none;min-height:48px} input[type=number]{font-size:18px;font-weight:700;text-align:center}
+    button{border:none;border-radius:14px;padding:13px 14px;min-height:48px;font-weight:800;cursor:pointer}.primary{background:linear-gradient(180deg,var(--gold),var(--gold2));color:#2a1706}.secondary{background:linear-gradient(180deg,rgba(122,39,71,1),rgba(52,24,35,1));color:#fff}.ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid rgba(242,205,122,.14)}
+    .statusGrid{margin-top:16px;display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.panel{background:rgba(28,14,24,.82);border:1px solid rgba(242,205,122,.12);border-radius:26px;box-shadow:var(--shadow);overflow:hidden}.panelInner{padding:16px}.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.metric{background:rgba(46,20,36,.78);border:1px solid rgba(242,205,122,.10);border-radius:18px;padding:14px;min-height:92px}.metric .k{font-size:12px;text-transform:uppercase;letter-spacing:.24em;color:var(--muted)}.metric .v{margin-top:8px;font-size:30px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}.metric .s{margin-top:8px;font-size:13px;color:var(--muted);line-height:1.35}
+    .callHero{margin-top:14px;border:1px solid rgba(242,205,122,.18);background:linear-gradient(135deg, rgba(122,39,71,.96), rgba(242,205,122,.10));border-radius:24px;min-height:220px;padding:18px;position:relative;overflow:hidden}.callHero:before{content:"";position:absolute;inset:12px;border-radius:18px;border:1px dashed rgba(242,205,122,.15);pointer-events:none}.callLabel{position:relative;z-index:1;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.32em}.callBall{position:relative;z-index:1;margin-top:12px;font-size:clamp(68px,10vw,126px);line-height:1;font-weight:1000;letter-spacing:.03em}.callBall small{display:block;font-size:.22em;letter-spacing:.32em;text-transform:uppercase;color:#f7db99;margin-bottom:10px}.statusText{position:relative;z-index:1;margin-top:14px;color:#f6eadf;line-height:1.45;font-size:15px;max-width:560px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;max-height:120px;overflow:auto;padding-right:4px}.chip{background:rgba(255,255,255,.08);border:1px solid rgba(242,205,122,.14);color:#f6efe6;border-radius:999px;padding:7px 10px;font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums}
+    .verifyTitle{font-size:14px;font-weight:800;margin-bottom:8px;color:#fff0ce}.verifyBox{background:rgba(255,255,255,.05);border:1px solid rgba(242,205,122,.14);border-radius:22px;padding:14px}.verifyRow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.verifyBtns{display:flex;gap:10px}.verifyResult{margin-top:10px;min-height:22px;color:#f3e7dd;line-height:1.45}.verifyResult.good{color:#bbf7d0}.verifyResult.bad{color:#fecaca}.hint{margin-top:12px;color:#cab7ab;font-size:12px;line-height:1.45}
+    .modal{position:fixed;right:16px;bottom:16px;width:min(360px, calc(100vw - 32px));background:rgba(14,8,12,.96);border:1px solid rgba(242,205,122,.18);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);display:none;z-index:20}.modal.show{display:block}.modal strong{display:block;font-size:18px;color:#fff2cc}.modal p{margin:8px 0 0;color:#f0dfd4;line-height:1.4}
+    @media (max-width:1000px){.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.statusGrid{grid-template-columns:1fr}} @media (max-width:640px){.controls{grid-template-columns:1fr}.metrics{grid-template-columns:1fr}.verifyRow{grid-template-columns:1fr}.verifyBtns{flex-direction:column}.callBall{font-size:clamp(64px,18vw,104px)}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="brand"><span class="orb"></span> Annual Poiroux Reunion Bingo</div>
+    <h1>Call the ball.<br>Verify the winner.</h1>
+    <p class="sub">Offline-friendly and touch-friendly for iPad or iPhone. After it is installed to the Home Screen, it can run without internet.</p>
+    <div class="controls">
+      <div class="control"><label for="gameType">Game type</label><select id="gameType"><option value="line">Straight line bingo</option><option value="corners">4 corners bingo</option><option value="x">X lines bingo</option></select></div>
+      <div class="control"><label for="yearInput">Year</label><input id="yearInput" type="number" min="1900" max="2100" step="1" value="2026"></div>
+      <div class="control"><label for="speed">Auto-call speed</label><input id="speed" type="range" min="500" max="3500" step="100" value="1300"><div style="margin-top:8px;color:var(--muted);font-size:13px;text-align:right" id="speedLabel">1.3s</div></div>
+      <div class="control"><label>Game control</label><button id="startBtn" class="primary">Start new game</button></div>
+      <div class="control"><label>Ball control</label><button id="nextBtn" class="secondary" disabled>Call next ball</button></div>
+    </div>
+  </section>
+
+  <section class="statusGrid">
+    <div class="panel"><div class="panelInner">
+      <div class="metrics">
+        <div class="metric"><div class="k">Called balls</div><div class="v" id="calledCount">0</div><div class="s">Out of 75 possible balls.</div></div>
+        <div class="metric"><div class="k">Round status</div><div class="v" id="roundStatus">Ready</div><div class="s" id="roundSub">Start a game to begin.</div></div>
+      </div>
+      <div class="callHero"><div class="callLabel">Current call</div><div class="callBall" id="currentCall"><small>Waiting</small>—</div><div class="statusText" id="statusText">Press <strong>Start new game</strong> to shuffle the deck and begin calling balls.</div></div>
+      <div class="chips" id="callLog"></div>
+    </div></div>
+
+    <div class="panel"><div class="panelInner">
+      <div class="verifyTitle">Winner verification</div>
+      <div class="verifyBox">
+        <div class="verifyRow"><input id="cardIdInput" type="text" placeholder="CB-014" disabled><div class="verifyBtns"><button id="verifyBtn" class="primary" disabled>Verify</button><button id="resetBtn" class="ghost">Reset</button></div></div>
+        <div class="verifyResult" id="verifyResult">Start a game, then enter the printed card ID after bingo is reached.</div>
+      </div>
+      <div class="hint">Add this app to the Home Screen in Safari for the best offline behavior on iPad or iPhone.</div>
+    </div></div>
+  </section>
+</div>
+<div class="modal" id="winnerModal"><strong id="winnerTitle">Bingo!</strong><p id="winnerBody"></p></div>
+<script>
+(() => {
+  function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+  function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
+  function callText(n){ const p = n<=15?'B':n<=30?'I':n<=45?'N':n<=60?'G':'O'; return p+'-'+n; }
+  function isMarked(cell){ return cell==='FREE' || called.has(cell); }
+  function roundLabel(t){ return t==='corners' ? '4 corners bingo' : t==='x' ? 'X lines bingo' : 'straight line bingo'; }
+  function patternLabel(t){ return t==='corners' ? 'All four corners' : t==='x' ? 'Both diagonals' : 'Any full row, column, or diagonal'; }
+  function makeCard(){
+    const ranges = {B:[1,15], I:[16,30], N:[31,45], G:[46,60], O:[61,75]};
+    const cols = ['B','I','N','G','O'];
+    const rows = Array.from({length:5},()=>Array(5).fill(null));
+    cols.forEach((c,ci)=>{
+      const pool = Array.from({length:ranges[c][1]-ranges[c][0]+1},(_,i)=>ranges[c][0]+i);
+      shuffle(pool);
+      for(let r=0;r<5;r++) rows[r][ci] = pool[r];
+    });
+    rows[2][2] = 'FREE';
+    return rows;
+  }
+  function signature(rows){ return rows.map(r => r.join('-')).join('|'); }
+  function generateCards(){
+    const seen = new Set();
+    const cards = [];
+    while(cards.length < 60){
+      const rows = makeCard();
+      const sig = signature(rows);
+      if(seen.has(sig)) continue;
+      seen.add(sig);
+      cards.push({id:`CB-${String(cards.length+1).padStart(3,'0')}`, rows});
+    }
+    return cards;
+  }
+  function hasBingo(card, type){
+    const m = card.rows.map(r => r.map(isMarked));
+    if(type==='corners') return m[0][0] && m[0][4] && m[4][0] && m[4][4];
+    if(type==='x') return [0,1,2,3,4].every(i => m[i][i]) && [0,1,2,3,4].every(i => m[i][4-i]);
+    for(let r=0;r<5;r++) if(m[r].every(Boolean)) return true;
+    for(let c=0;c<5;c++) if([0,1,2,3,4].every(r=>m[r][c])) return true;
+    return [0,1,2,3,4].every(i=>m[i][i]) || [0,1,2,3,4].every(i=>m[i][4-i]);
+  }
+  function speak(text){ if(!('speechSynthesis' in window)) return; window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.rate=1; u.pitch=1; u.volume=1; window.speechSynthesis.speak(u); }
+  const els = { gameType:document.getElementById('gameType'), yearInput:document.getElementById('yearInput'), speed:document.getElementById('speed'), speedLabel:document.getElementById('speedLabel'), startBtn:document.getElementById('startBtn'), nextBtn:document.getElementById('nextBtn'), calledCount:document.getElementById('calledCount'), roundStatus:document.getElementById('roundStatus'), roundSub:document.getElementById('roundSub'), currentCall:document.getElementById('currentCall'), statusText:document.getElementById('statusText'), callLog:document.getElementById('callLog'), cardIdInput:document.getElementById('cardIdInput'), verifyBtn:document.getElementById('verifyBtn'), resetBtn:document.getElementById('resetBtn'), verifyResult:document.getElementById('verifyResult'), winnerModal:document.getElementById('winnerModal'), winnerTitle:document.getElementById('winnerTitle'), winnerBody:document.getElementById('winnerBody') };
+  let cards = generateCards();
+  let called = new Set();
+  let callOrder = [];
+  let callIndex = 0;
+  let activeCardIndex = null;
+  let gameActive = false;
+  let winnerFound = false;
+  let autoTimer = null;
+  let autoEnabled = false;
+  function setSpeedLabel(){ els.speedLabel.textContent = (Number(els.speed.value)/1000).toFixed(1)+'s'; if(autoEnabled){ stopAuto(); toggleAuto(); } }
+  function renderLog(){ els.callLog.innerHTML=''; [...called].slice(-18).forEach(n => { const d=document.createElement('div'); d.className='chip'; d.textContent=callText(n); els.callLog.appendChild(d); }); }
+  function updateTop(){ els.calledCount.textContent = called.size; els.roundStatus.textContent = gameActive ? 'Live' : (winnerFound ? 'Won' : 'Ready'); els.roundSub.textContent = gameActive ? `${roundLabel(els.gameType.value)} in progress` : (winnerFound ? 'A winning card has been called.' : 'Start a game to begin.'); renderLog(); }
+  function stopAuto(){ if(autoTimer) clearInterval(autoTimer); autoTimer = null; autoEnabled = false; }
+  function showWinner(msg){ els.winnerTitle.textContent = 'Bingo!'; els.winnerBody.textContent = msg; els.winnerModal.classList.add('show'); setTimeout(() => els.winnerModal.classList.remove('show'), 5000); }
+  function resetGame(){ stopAuto(); called = new Set(); callOrder = shuffle(Array.from({length:75},(_,i)=>i+1)); callIndex = 0; activeCardIndex = null; gameActive = false; winnerFound = false; els.currentCall.innerHTML = '<small>Waiting</small>—'; els.statusText.innerHTML = 'Press <strong>Start new game</strong> to shuffle the deck and begin calling balls.'; els.verifyResult.textContent = 'Start a game, then enter the printed card ID after bingo is reached.'; els.verifyResult.className = 'verifyResult'; els.cardIdInput.disabled = true; els.verifyBtn.disabled = true; els.nextBtn.disabled = true; updateTop(); }
+  function startGame(){ resetGame(); activeCardIndex = randInt(0, cards.length-1); gameActive = true; els.nextBtn.disabled = false; els.statusText.textContent = `Round started. Win condition: ${roundLabel(els.gameType.value)} — ${patternLabel(els.gameType.value)}.`; callNext(); updateTop(); }
+  function callNext(){ if(!gameActive || winnerFound) return; if(callIndex >= callOrder.length){ gameActive=false; els.nextBtn.disabled=true; stopAuto(); els.statusText.textContent='All balls were called without a bingo.'; updateTop(); return; } const n = callOrder[callIndex++]; called.add(n); els.currentCall.innerHTML = `<small>Current call</small>${callText(n)}`; els.statusText.textContent = `Called ${callText(n)}. Watching the hidden live card for bingo...`; speak(callText(n)); if(hasBingo(cards[activeCardIndex], els.gameType.value)){ winnerFound = true; gameActive = false; els.nextBtn.disabled = true; stopAuto(); els.cardIdInput.disabled = false; els.verifyBtn.disabled = false; els.cardIdInput.focus(); els.statusText.innerHTML = '<strong>Bingo has been called.</strong> Enter the printed card ID to verify the winner.'; showWinner('A winner has been reached. Now verify the printed card ID to confirm the round winner.'); } updateTop(); }
+  function verifyWinner(){ const id = String(els.cardIdInput.value || '').trim().toUpperCase(); if(!winnerFound){ els.verifyResult.textContent = 'No winner has been reached yet.'; els.verifyResult.className='verifyResult bad'; return; } if(!id){ els.verifyResult.textContent = 'Enter a card ID from the printed deck.'; els.verifyResult.className='verifyResult bad'; return; } const winner = cards[activeCardIndex]; if(id === winner.id){ els.verifyResult.textContent = `Confirmed: ${winner.id} is the winning card for this round.`; els.verifyResult.className='verifyResult good'; showWinner(`Confirmed winner: ${winner.id}.`); } else { els.verifyResult.textContent = `${id} is not the winning card for this round.`; els.verifyResult.className='verifyResult bad'; } }
+  function toggleAuto(){ if(!gameActive || winnerFound) return; autoEnabled = !autoEnabled; if(autoEnabled) autoTimer = setInterval(callNext, Number(els.speed.value)); else stopAuto(); }
+  els.speed.addEventListener('input', setSpeedLabel); els.startBtn.addEventListener('click', startGame); els.nextBtn.addEventListener('click', callNext); els.verifyBtn.addEventListener('click', verifyWinner); els.resetBtn.addEventListener('click', resetGame); els.cardIdInput.addEventListener('keydown', e => { if(e.key === 'Enter') verifyWinner(); }); document.addEventListener('keydown', e => { if(e.code === 'Space' && !e.repeat){ e.preventDefault(); if(gameActive && !winnerFound) callNext(); } if((e.key === 'a' || e.key === 'A') && gameActive && !winnerFound) toggleAuto(); });
+  if('serviceWorker' in navigator){ navigator.serviceWorker.register('./service-worker.js').catch(()=>{}); }
+  const savedYear = localStorage.getItem('annualPoirouxYear'); if(savedYear) els.yearInput.value = savedYear; els.yearInput.addEventListener('change', () => localStorage.setItem('annualPoirouxYear', els.yearInput.value)); const savedType = localStorage.getItem('annualPoirouxType'); if(savedType) els.gameType.value = savedType; els.gameType.addEventListener('change', () => localStorage.setItem('annualPoirouxType', els.gameType.value));
+  setSpeedLabel(); resetGame();
+})();
+</script>
+</body>
+</html>
